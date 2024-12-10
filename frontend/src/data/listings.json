@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "image": "https://www.souciehorner.com/wp-content/uploads/2017/04/Kitchen2-1536.jpg",
+    "title": "Cozy Beachfront Condo",
+    "type": "Entire home",
+    "guests": 4,
+    "price": 150,
+    "rating": 4.8,
+    "category": "Beachfront"
+  },
+  {
+    "id": 2,
+    "image": "https://i.pinimg.com/originals/62/8b/63/628b63a65a24fc369705e5dea8e90144.jpg",
+    "title": "Luxury Cabin in the Woods",
+    "type": "Private room",
+    "guests": 2,
+    "price": 200,
+    "rating": 5.0,
+    "category": "Cabins"
+  },
+  {
+    "id": 3,
+    "image": "https://www.idesignarch.com/wp-content/uploads/Custom-Modern-Small-House-in-the-Forest-California_2.jpg",
+    "title": "Modern Tiny Home",
+    "type": "Entire home",
+    "guests": 2,
+    "price": 100,
+    "rating": 4.6,
+    "category": "Tiny Homes"
+  },
+  {
+    "id": 4,
+    "image": "https://images.squarespace-cdn.com/content/v1/560177cce4b0ead07ebd2639/1447877436235-CXOSRSAPRCC0ML0HKT5D/2009082426_LutgertRes_034.jpg",
+    "title": "Venetian Villa",
+    "type": "Entire home",
+    "guests": 6,
+    "price": 500,
+    "rating": 4.9,
+    "category": "Luxury"
+  },
+  {
+    "id": 5,
+    "image": "https://www.jerseyfamilyfun.com/wp-content/uploads/2020/06/Cabin-rentals-on-the-lake.png",
+    "title": "Scenic Camping Hut",
+    "type": "Private room",
+    "guests": 2,
+    "price": 80,
+    "rating": 4.4,
+    "category": "Camping"
+  },
+  {
+    "id": 6,
+    "image": "https://i.pinimg.com/originals/91/d0/ee/91d0eeaf05e9497b1d19f5df3655ffc0.jpg",
+    "title": "Mountain Glamping Tent",
+    "type": "Shared space",
+    "guests": 3,
+    "price": 120,
+    "rating": 4.7,
+    "category": "Glamping"
+  },
+  {
+    "id": 7,
+    "image": "https://hgtvhome.sndimg.com/content/dam/images/hgtv/fullset/2016/1/19/0/OA16-Nilsen-Landscape-Design_Outdoor-Oasis_2.jpg.rend.hgtvcom.966.644.suffix/1453238710900.jpeg",
+    "title": "City Penthouse with Rooftop",
+    "type": "Entire home",
+    "guests": 6,
+    "price": 450,
+    "rating": 4.9,
+    "category": "City Life"
+  },
+  {
+    "id": 8,
+    "image": "https://i.pinimg.com/originals/d9/9e/f9/d99ef95850943f688093fbe1e4a5f1b3.jpg",
+    "title": "Private Island Retreat",
+    "type": "Entire home",
+    "guests": 10,
+    "price": 1000,
+    "rating": 5.0,
+    "category": "Islands"
+  },
+  {
+    "id": 9,
+    "image": "https://i.pinimg.com/originals/2b/4a/7a/2b4a7aede326300b91099da3168dc2c4.jpg",
+    "title": "Treehouse Adventure",
+    "type": "Entire home",
+    "guests": 4,
+    "price": 250,
+    "rating": 4.8,
+    "category": "Treehouses"
+  },
+  {
+    "id": 10,
+    "image": "https://img.freepik.com/premium-photo/rustic-farmhouse-with-vintage-furnishings-natural-decor_124507-103638.jpg?w=996",
+    "title": "Rustic Farmhouse",
+    "type": "Entire home",
+    "guests": 8,
+    "price": 300,
+    "rating": 4.9,
+    "category": "Farmhouse"
+  }
+]

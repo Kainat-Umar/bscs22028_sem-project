@@ -1,0 +1,99 @@
+/* Grid container for the cards */
+.listing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns in each row */
+  gap: 1.5rem;
+  padding: 2rem;
+  justify-items: center;
+  background-color: #f7f7f7; /* Optional for better contrast */
+}
+
+/* Card styling */
+.listing-card {
+  width: 100%; /* Makes the card take full width of its grid cell */
+  height: 400px; /* Fixed height for all cards */
+  max-width: 300px; /* Optional: max width for the card */
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.listing-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Image container */
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 200px; /* Fixed height for the image container */
+  overflow: hidden;
+}
+
+.listing-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the container without distortion */
+}
+
+/* Content styling */
+.listing-content {
+  padding: 1rem;
+  height: calc(100% - 200px); /* Adjust content area to fill the rest of the card height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.listing-header {
+  margin-bottom: 0.5rem;
+}
+
+.listing-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #222;
+  margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.listing-type {
+  font-size: 0.9rem;
+  color: #717171;
+}
+
+.listing-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.listing-price {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.per-night {
+  font-size: 0.9rem;
+  color: #717171;
+}
+
+.listing-rating {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #222;
+}
+
+.listing-rating .fas.fa-star {
+  color: #FF385C;
+  margin-right: 0.2rem;
+}
