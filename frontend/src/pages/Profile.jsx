@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './Profile.css';
 
 const Profile = () => {
   const [bookings, setBookings] = useState([]);
@@ -24,13 +25,17 @@ const Profile = () => {
     <div className="profile">
       <h2>Your Bookings</h2>
       {error && <p className="error-message">{error}</p>}
-      {bookings.map((booking) => (
-        <div key={booking._id} className="booking-card">
-          <p>Property: {booking.listing.title}</p>
-          <p>Dates: {new Date(booking.checkInDate).toDateString()} - {new Date(booking.checkOutDate).toDateString()}</p>
-          <p>Total Price: ${booking.totalPrice}</p>
-        </div>
-      ))}
+      {bookings.length === 0 ? (
+        <p>No past bookings available.</p>
+      ) : (
+        bookings.map((booking) => (
+          <div key={booking._id} className="booking-card">
+            <h4>Property: {booking.listing.title}</h4>
+            <p>Dates: {new Date(booking.checkInDate).toDateString()} - {new Date(booking.checkOutDate).toDateString()}</p>
+            <p>Total Price: ${booking.totalPrice}</p>
+          </div>
+        ))
+      )}
     </div>
   );
 };

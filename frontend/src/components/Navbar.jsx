@@ -50,11 +50,11 @@ const Navbar = () => {
           />
           {isDropdownOpen && (
             <div className="dropdown-menu">
-              <Link to="/signup">
-                <button>Sign up</button>
-              </Link>
               <Link to="/login">
                 <button>Log in</button>
+              </Link>
+              <Link to="/signup">
+                <button>Sign up</button>
               </Link>
               <Link to="/profile">
                 <button>Profile</button>

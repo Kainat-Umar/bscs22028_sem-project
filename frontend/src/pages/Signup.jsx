@@ -1,55 +1,83 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './signup.css';
 
 const Signup = () => {
-  const [formData, setFormData] = useState({ username: '', password: '' });
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
-  const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
     try {
-      await axios.post('/api/auth/register', formData);
-      setSuccess(true);
-      setTimeout(() => navigate('/login'), 2000); // Redirect to login after success
+      const response = await axios.post('/api/auth/register', {
+        name,
+        email,
+        password,
+      });
+
+      window.location.href = '/login'; // Redirect to login page after successful signup
     } catch (err) {
-      setError(err.response?.data?.message || 'An error occurred');
+      setError('Something went wrong, please try again');
     }
   };
 
   return (
     <div className="signup-container">
       <h2>Signup</h2>
-      {success && <p className="success-message">Account created! Redirecting to login...</p>}
-      {error && <p className="error-message">{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={formData.username}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">Signup</button>
+      {error && <div className="error-message">{error}</div>}
+      <form onSubmit={handleSubmit} className="signup-form">
+        <div className="input-group">
+          <label htmlFor="name">Full Name</label>
+          <input
+            type="text"
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+        <div className="input-group">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div className="input-group">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <div className="input-group">
+          <label htmlFor="confirm-password">Confirm Password</label>
+          <input
+            type="password"
+            id="confirm-password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit" className="signup-btn">Sign Up</button>
       </form>
-      <p>
-        Already have an account? <a href="/login">Login here</a>
-      </p>
+      <p>Already have an account? <a href="/login">Login</a></p>
     </div>
   );
 };

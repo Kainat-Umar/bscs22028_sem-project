@@ -12,18 +12,31 @@ import Signup from './pages/Signup';
 import AdminPanel from './pages/AdminPanel';
 import Profile from './pages/Profile';
 import ProtectedRoute from './components/ProtectedRoute'; // Protect routes for logged-in users
-import mockListings from './data/listings.json';
+import axios from 'axios';  // Import axios for backend requests
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './App.css';
 
 const App = () => {
   const [listings, setListings] = useState([]);
   const [filteredListings, setFilteredListings] = useState([]);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true); // To handle loading state
 
-  // Load mock listings data
+  // Fetch listings from backend API
   useEffect(() => {
-    setListings(mockListings);
-    setFilteredListings(mockListings);
+    const fetchListings = async () => {
+      try {
+        const response = await axios.get('/api/listings');
+        setListings(response.data);  // Assuming the backend returns an array of listings
+        setFilteredListings(response.data);
+        setLoading(false);  // Set loading to false after data is fetched
+      } catch (err) {
+        setError('Failed to load listings');
+        setLoading(false);
+      }
+    };
+
+    fetchListings();
   }, []);
 
   const filterByCategory = (category) => {
@@ -46,7 +59,13 @@ const App = () => {
               <>
                 <SearchBar />
                 <Categories onCategorySelect={filterByCategory} />
-                <ListingCard listings={filteredListings} />
+                {loading ? (
+                  <p>Loading listings...</p>
+                ) : error ? (
+                  <p>{error}</p>
+                ) : (
+                  <ListingCard listings={filteredListings} />
+                )}
               </>
             }
           />
@@ -55,7 +74,7 @@ const App = () => {
           <Route path="/listings/:id" element={<ListingDetails />} />
 
           {/* Booking Page */}
-          <Route path="/book/:id" element={<BookingPage />} />
+          <Route path="/booking/:id" element={<BookingPage />} />
 
           {/* Login Page */}
           <Route path="/login" element={<Login />} />
@@ -65,7 +84,7 @@ const App = () => {
 
           {/* Admin Panel (Protected Route) */}
           <Route
-            path="/admin"
+            path="/adminpanel"
             element={
               <ProtectedRoute>
                 <AdminPanel />

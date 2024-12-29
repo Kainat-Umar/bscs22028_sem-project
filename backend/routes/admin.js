@@ -1,53 +1,55 @@
 import express from 'express';
 import Listing from '../models/Listing.js';
-import Booking from '../models/Booking.js'; // Assuming you have a Booking model in `models/Booking.js`
+import Booking from '../models/Booking.js';
+import authMiddleware from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-// Admin route to get all listings
+// Middleware to protect routes
+router.use(authMiddleware);
+
+// Get all listings
 router.get('/listings', async (req, res) => {
   try {
     const listings = await Listing.find();
-    res.json(listings);
-  } catch (error) {
-    res.status(500).json({ message: 'Server error' });
+    res.status(200).json(listings);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to fetch listings' });
   }
 });
 
-// Admin route to add a new listing
+// Add a new listing
 router.post('/listings', async (req, res) => {
-  const { title, description, price, image } = req.body;
-
+  const { title, description, price } = req.body;
   try {
-    const newListing = new Listing({ title, description, price, image });
+    const newListing = new Listing({ title, description, price });
     await newListing.save();
     res.status(201).json(newListing);
-  } catch (error) {
-    res.status(500).json({ message: 'Server error' });
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to add listing' });
   }
 });
 
-// Admin route to delete a listing
+// Delete a listing
 router.delete('/listings/:id', async (req, res) => {
   try {
-    const listing = await Listing.findById(req.params.id);
+    const listing = await Listing.findByIdAndDelete(req.params.id);
     if (!listing) {
       return res.status(404).json({ message: 'Listing not found' });
     }
-    await listing.remove();
-    res.json({ message: 'Listing removed' });
-  } catch (error) {
-    res.status(500).json({ message: 'Server error' });
+    res.status(200).json({ message: 'Listing deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to delete listing' });
   }
 });
 
-// Admin route to get all bookings
+// Get all bookings
 router.get('/bookings', async (req, res) => {
   try {
-    const bookings = await Booking.find().populate('listing', 'title price').populate('user', 'username');
-    res.json(bookings);
-  } catch (error) {
-    res.status(500).json({ message: 'Server error' });
+    const bookings = await Booking.find().populate('user').populate('listing');
+    res.status(200).json(bookings);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to fetch bookings' });
   }
 });
 

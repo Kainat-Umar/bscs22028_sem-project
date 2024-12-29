@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import mockListings from '../data/listings.json';
 import './BookingPage.css';
 
 const BookingPage = () => {
